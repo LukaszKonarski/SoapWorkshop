@@ -26,7 +26,7 @@ public class ProductController {
     //Navbar resources
     @ModelAttribute
     public void addCategories(Model model) {
-        model.addAttribute("categories", this.categoryRepository.findAll());
+        model.addAttribute("categories", this.categoryRepository.findAllByIdGreaterThan(1));
     }
 
     @RequestMapping(value = "/store/productsList/{id}", method = RequestMethod.GET)

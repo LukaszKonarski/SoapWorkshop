@@ -15,7 +15,6 @@ public class Product {
     @NotNull
     private String name;
     @ManyToMany(cascade = CascadeType.ALL)
-    @NotNull
     private List<Category> categories = new ArrayList<>();
     private String description;
     private BigDecimal price;

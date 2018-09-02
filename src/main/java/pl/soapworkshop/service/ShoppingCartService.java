@@ -22,13 +22,15 @@ public class ShoppingCartService {
     private OrderRepository orderRepository;
     private ShipmentRepository shipmentRepository;
     private AddressRepository addressRepository;
+    private ProductRepository productRepository;
 
     @Autowired
-    public ShoppingCartService(ShoppingCart shoppingCart, OrderRepository orderRepository, ShipmentRepository shipmentRepository, AddressRepository addressRepository) {
+    public ShoppingCartService(ShoppingCart shoppingCart, OrderRepository orderRepository, ShipmentRepository shipmentRepository, AddressRepository addressRepository, ProductRepository productRepository) {
         this.shoppingCart = shoppingCart;
         this.orderRepository = orderRepository;
         this.shipmentRepository = shipmentRepository;
         this.addressRepository = addressRepository;
+        this.productRepository = productRepository;
     }
 
     public List<Product> getCart() {
@@ -83,7 +85,7 @@ public class ShoppingCartService {
             currentOrder.setProductId(op.getId());
             currentOrder.setProductName(op.getName());
             currentOrder.setProductQuantity(op.getQuantity());
-            currentOrder.setOrderTotal(getCartTotal(null));
+            currentOrder.setOrderTotal(getCartTotal());
             orderRepository.save(currentOrder);
         }
     }
@@ -99,8 +101,9 @@ public class ShoppingCartService {
 
     }
 
-    public BigDecimal getShipmentCost(Shipment chosenShipment) {
-        return chosenShipment.getCost();
+    public void useShipment(int chosenShipmentId) {
+        Product usedShipment = productRepository.findOne(chosenShipmentId);
+        addToCart(usedShipment);
     }
 
     public int findProductInCartAndReturnIndex(Product product, List<Product> cart) {
@@ -133,16 +136,13 @@ public class ShoppingCartService {
         product.setSubtotal(subtotal);
     }
 
-    public BigDecimal getCartTotal(Shipment chosenShipment) {
+    public BigDecimal getCartTotal() {
         List<Product> cart = shoppingCart.getCartContents();
         BigDecimal cartTotal = new BigDecimal("0.00");
         ListIterator literator = cart.listIterator();
         while (literator.hasNext()) {
             Product currentProduct = (Product) literator.next();
             cartTotal = cartTotal.add(currentProduct.getSubtotal());
-        }
-        if (chosenShipment != null) {
-            cartTotal = cartTotal.add(chosenShipment.getCost());
         }
         return cartTotal;
     }

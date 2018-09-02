@@ -55,14 +55,14 @@
             </tr>
             </thead>
             <tfoot>
-            <tr>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th>Przesyłka</th>
-                <th>15.00</th>
-            </tr>
+            <%--<tr>--%>
+            <%--<th></th>--%>
+            <%--<th></th>--%>
+            <%--<th></th>--%>
+            <%--<th></th>--%>
+            <%--<th>Przesyłka</th>--%>
+            <%--<th>15.00</th>--%>
+            <%--</tr>--%>
             <tr>
                 <th></th>
                 <th></th>
@@ -78,16 +78,17 @@
                         <span class="caret"></span></button>
                     <ul class="dropdown-menu">
                         <c:forEach items="${shipment}" var="shipment">
-                            <li><a href="<c:url value="//store/shoppingCart/${shipment.id}"/>">${shipment.name}</a></li>
+                            <li><a href="<c:url value="/store/shoppingCart/${shipment.id}"/>">${shipment.name}</a></li>
 
-                            <form:form method="post" action="/store/shoppingCart" modelAttribute="shipment">
+                            <%--@elvariable id="product" type=""--%>
+                            <form:form method="post" action="/store/shoppingCart" modelAttribute="product">
                                 <input type="hidden" name="id" value="${shipment.id}"/>
                                 <input type="hidden" name="name" value="${shipment.name}"/>
-                                <input type="hidden" name="cost" value="${shipment.cost}"/>
-                                <input type="submit" class="btn btn-default" value="Zmień formę przesyłki">
+                                <input type="hidden" name="cost" value="${shipment.price}"/>
                             </form:form>
 
                         </c:forEach>
+                        <input type="submit" class="btn btn-default" value="Zmień formę przesyłki">
                     </ul>
                 </div>
 
@@ -107,7 +108,7 @@
                 <%--<a href="<c:url value="/store/orderCheckout"/>" class="btn btn-default"--%>
                 <%--role="button">Potwierdź zamówienie</a>--%>
                 <%--</th>--%>
-                <%--</tr>--%>
+            </tr>
             </tfoot>
 
             <tbody>
@@ -119,7 +120,7 @@
                     <td>${cartItem.subtotal}</td>
                     <td>
                             <%--@elvariable id="product" type=""--%>
-                        <form:form method="post" action="/store/shoppingCart" modelAttribute="product">
+                        <form:form method="post" action="/store/editShoppingCart" modelAttribute="product">
                             <input type="hidden" name="id" value="${cartItem.id}"/>
                             <input type="hidden" name="name" value="${cartItem.name}"/>
                             <input type="hidden" name="price" value="${cartItem.price}"/>
