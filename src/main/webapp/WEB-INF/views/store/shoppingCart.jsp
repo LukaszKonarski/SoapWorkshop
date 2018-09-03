@@ -55,14 +55,35 @@
             </tr>
             </thead>
             <tfoot>
-            <%--<tr>--%>
-            <%--<th></th>--%>
-            <%--<th></th>--%>
-            <%--<th></th>--%>
-            <%--<th></th>--%>
-            <%--<th>Przesyłka</th>--%>
-            <%--<th>15.00</th>--%>
-            <%--</tr>--%>
+            <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th><label for="shipment">Wybierz formę przesyłki:</label></th>
+                <th>
+
+                    <div class="shipment-form">
+
+                        <form:select class="form-control" id="shipment" path="shipment" method="post"
+                                     action="/store/shoppingCart" modelAttribute="product" items="${shipment}">
+
+                            <c:forEach items="${shipment}" var="shipment">
+                                <option>${shipment.name}<input type="hidden" name="id" value="${shipment.id}"/></option>
+                            </c:forEach>
+
+                        </form:select>
+                    </div>
+
+                </th>
+                <th>
+
+
+                    <div class="shipment-form">
+                        <button type="submit" class="btn btn-primary">Wybierz</button>
+                    </div>
+
+                </th>
+            </tr>
             <tr>
                 <th></th>
                 <th></th>
