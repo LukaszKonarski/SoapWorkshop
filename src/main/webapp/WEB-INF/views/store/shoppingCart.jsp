@@ -62,25 +62,34 @@
                 <th><label for="shipment">Wybierz formę przesyłki:</label></th>
                 <th>
 
-                    <div class="shipment-form">
+                    <%--<div class="shipment-form">--%>
 
-                        <form:select class="form-control" id="shipment" path="shipment" method="post"
-                                     action="/store/shoppingCart" modelAttribute="product" items="${shipment}">
+                        <%--<select class="form-control" id="shipment" method="post"--%>
+                                     <%--action="/store/shoppingCart" modelAttribute="product">--%>
 
-                            <c:forEach items="${shipment}" var="shipment">
-                                <option>${shipment.name}<input type="hidden" name="id" value="${shipment.id}"/></option>
+                            <%--<c:forEach items="${shipment}" var="shipment">--%>
+                                <%--<option>${shipment.name}<input type="hidden" name="id" value="${shipment.id}"/></option>--%>
+                            <%--</c:forEach>--%>
+
+                        <%--</select>--%>
+                    <%--</div>--%>
+                    <%--<div class="shipment-form">--%>
+                        <%--<button type="submit" class="btn btn-primary">Wybierz</button>--%>
+                    <%--</div>--%>
+                    <form:form method="post" action="/store/shoppingCart" modelAttribute="shipment">
+                        <form:select path="product">
+                            <c:forEach items="${shipment}" var="shipmentMethod">
+                                <form:option value="${shipmentMethod}" label="${shipmentMethod.name}"></form:option>
                             </c:forEach>
-
+                            <input type="submit" class="btn btn-default" value="Zmień formę przesyłki">
                         </form:select>
-                    </div>
-
+                    </form:form>
                 </th>
+
                 <th>
 
 
-                    <div class="shipment-form">
-                        <button type="submit" class="btn btn-primary">Wybierz</button>
-                    </div>
+
 
                 </th>
             </tr>
@@ -94,24 +103,24 @@
             </tr>
 
             <tr>
-                <div class="dropdown">
-                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Transport
-                        <span class="caret"></span></button>
-                    <ul class="dropdown-menu">
-                        <c:forEach items="${shipment}" var="shipment">
-                            <li><a href="<c:url value="/store/shoppingCart/${shipment.id}"/>">${shipment.name}</a></li>
+                <%--<div class="dropdown">--%>
+                    <%--<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Transport--%>
+                        <%--<span class="caret"></span></button>--%>
+                    <%--<ul class="dropdown-menu">--%>
+                        <%--<c:forEach items="${shipment}" var="shipment">--%>
+                            <%--<li><a href="<c:url value="/store/shoppingCart/${shipment.id}"/>">${shipment.name}</a></li>--%>
 
-                            <%--@elvariable id="product" type=""--%>
-                            <form:form method="post" action="/store/shoppingCart" modelAttribute="product">
-                                <input type="hidden" name="id" value="${shipment.id}"/>
-                                <input type="hidden" name="name" value="${shipment.name}"/>
-                                <input type="hidden" name="cost" value="${shipment.price}"/>
-                            </form:form>
+                            <%--&lt;%&ndash;@elvariable id="product" type=""&ndash;%&gt;--%>
+                            <%--<form:form method="post" action="/store/shoppingCart" modelAttribute="product">--%>
+                                <%--<input type="hidden" name="id" value="${shipment.id}"/>--%>
+                                <%--<input type="hidden" name="name" value="${shipment.name}"/>--%>
+                                <%--<input type="hidden" name="cost" value="${shipment.price}"/>--%>
+                            <%--</form:form>--%>
 
-                        </c:forEach>
-                        <input type="submit" class="btn btn-default" value="Zmień formę przesyłki">
-                    </ul>
-                </div>
+                        <%--</c:forEach>--%>
+                        <%--<input type="submit" class="btn btn-default" value="Zmień formę przesyłki">--%>
+                    <%--</ul>--%>
+                <%--</div>--%>
 
                 <%--<ul class="dropdown-menu">--%>
                 <%--<c:forEach items="${categories}" var="c">--%>
