@@ -61,36 +61,17 @@
                 <th></th>
                 <th><label for="shipment">Wybierz formę przesyłki:</label></th>
                 <th>
-
-                    <%--<div class="shipment-form">--%>
-
-                        <%--<select class="form-control" id="shipment" method="post"--%>
-                                     <%--action="/store/shoppingCart" modelAttribute="product">--%>
-
-                            <%--<c:forEach items="${shipment}" var="shipment">--%>
-                                <%--<option>${shipment.name}<input type="hidden" name="id" value="${shipment.id}"/></option>--%>
-                            <%--</c:forEach>--%>
-
-                        <%--</select>--%>
-                    <%--</div>--%>
-                    <%--<div class="shipment-form">--%>
-                        <%--<button type="submit" class="btn btn-primary">Wybierz</button>--%>
-                    <%--</div>--%>
-                    <form:form method="post" action="/store/shoppingCart" modelAttribute="shipment">
-                        <form:select path="product">
+                    <%--@elvariable id="product" type=""--%>
+                    <form:form method="post" action="/store/shoppingCart" modelAttribute="product">
+                        <form:select path="id">
                             <c:forEach items="${shipment}" var="shipmentMethod">
-                                <form:option value="${shipmentMethod}" label="${shipmentMethod.name}"></form:option>
+                                <form:option value="${shipmentMethod.id}" label="${shipmentMethod.name}"></form:option>
                             </c:forEach>
-                            <input type="submit" class="btn btn-default" value="Zmień formę przesyłki">
                         </form:select>
+                        <input type="submit" class="btn btn-default" value="Zmień formę przesyłki">
                     </form:form>
                 </th>
-
                 <th>
-
-
-
-
                 </th>
             </tr>
             <tr>
@@ -103,41 +84,6 @@
             </tr>
 
             <tr>
-                <%--<div class="dropdown">--%>
-                    <%--<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Transport--%>
-                        <%--<span class="caret"></span></button>--%>
-                    <%--<ul class="dropdown-menu">--%>
-                        <%--<c:forEach items="${shipment}" var="shipment">--%>
-                            <%--<li><a href="<c:url value="/store/shoppingCart/${shipment.id}"/>">${shipment.name}</a></li>--%>
-
-                            <%--&lt;%&ndash;@elvariable id="product" type=""&ndash;%&gt;--%>
-                            <%--<form:form method="post" action="/store/shoppingCart" modelAttribute="product">--%>
-                                <%--<input type="hidden" name="id" value="${shipment.id}"/>--%>
-                                <%--<input type="hidden" name="name" value="${shipment.name}"/>--%>
-                                <%--<input type="hidden" name="cost" value="${shipment.price}"/>--%>
-                            <%--</form:form>--%>
-
-                        <%--</c:forEach>--%>
-                        <%--<input type="submit" class="btn btn-default" value="Zmień formę przesyłki">--%>
-                    <%--</ul>--%>
-                <%--</div>--%>
-
-                <%--<ul class="dropdown-menu">--%>
-                <%--<c:forEach items="${categories}" var="c">--%>
-                <%--<li><a href="<c:url value="/store/productsList/${c.id}"/>">${c.name}</a></li>--%>
-                <%--</c:forEach>--%>
-                <%--</ul>--%>
-                <%--</tr>--%>
-                <%--<tr>--%>
-                <%--<th></th>--%>
-                <%--<th></th>--%>
-                <%--<th></th>--%>
-                <%--<th></th>--%>
-                <%--<th></th>--%>
-                <%--<th>--%>
-                <%--<a href="<c:url value="/store/orderCheckout"/>" class="btn btn-default"--%>
-                <%--role="button">Potwierdź zamówienie</a>--%>
-                <%--</th>--%>
             </tr>
             </tfoot>
 

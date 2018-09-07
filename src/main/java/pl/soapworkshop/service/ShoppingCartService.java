@@ -4,10 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 import pl.soapworkshop.entity.*;
-import pl.soapworkshop.repository.AddressRepository;
-import pl.soapworkshop.repository.OrderRepository;
-import pl.soapworkshop.repository.ProductRepository;
-import pl.soapworkshop.repository.ShipmentRepository;
+import pl.soapworkshop.repository.*;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -23,14 +20,17 @@ public class ShoppingCartService {
     private ShipmentRepository shipmentRepository;
     private AddressRepository addressRepository;
     private ProductRepository productRepository;
+    private CategoryRepository categoryRepository;
 
     @Autowired
-    public ShoppingCartService(ShoppingCart shoppingCart, OrderRepository orderRepository, ShipmentRepository shipmentRepository, AddressRepository addressRepository, ProductRepository productRepository) {
+    public ShoppingCartService(ShoppingCart shoppingCart, OrderRepository orderRepository, ShipmentRepository shipmentRepository,
+                               AddressRepository addressRepository, ProductRepository productRepository, CategoryRepository categoryRepository) {
         this.shoppingCart = shoppingCart;
         this.orderRepository = orderRepository;
         this.shipmentRepository = shipmentRepository;
         this.addressRepository = addressRepository;
         this.productRepository = productRepository;
+        this.categoryRepository = categoryRepository;
     }
 
     public List<Product> getCart() {
@@ -43,10 +43,11 @@ public class ShoppingCartService {
         int currentProductIndex = findProductInCartAndReturnIndex(product, cart);
 
         if (currentProductIndex >= 0) {
-            Product combinedProduct = combineQuantieties(currentProductIndex, product, cart);
-            updateSubTotal(combinedProduct);
-            cart.set(currentProductIndex, combinedProduct);
-
+            if(isNotShipment(currentProductIndex)) {
+                Product combinedProduct = combineQuantieties(currentProductIndex, product, cart);
+                updateSubTotal(combinedProduct);
+                cart.set(currentProductIndex, combinedProduct);
+            }
         } else if (currentProductIndex < 0) {
             updateSubTotal(product);
             cart.add(product);
@@ -108,7 +109,6 @@ public class ShoppingCartService {
 
     public int findProductInCartAndReturnIndex(Product product, List<Product> cart) {
         Integer addedProductId = product.getId();
-        Integer addedProductQuantity = product.getQuantity();
         for (Product p : cart) {
             Integer currentProductId = p.getId();
             if (currentProductId.compareTo(addedProductId) == 0) {
@@ -116,6 +116,15 @@ public class ShoppingCartService {
             }
         }
         return -1;
+    }
+
+    public boolean isNotShipment(int id){
+        List<Category> shipment = categoryRepository.findAllByIdEquals(1);
+        if(shipment.size()>0){
+            return false;
+        }
+
+        return true;
     }
 
     public Product combineQuantieties(int currentProductIndex, Product addedProduct, List<Product> cart) {

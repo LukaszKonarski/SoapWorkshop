@@ -62,4 +62,6 @@ public class Product {
 
     public void setSubtotal(BigDecimal subtotal) { this.subtotal = subtotal; }
 
+
+
 }

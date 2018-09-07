@@ -50,7 +50,7 @@ public class ShoppingCartController {
     }
 
     @RequestMapping(value = "/store/shoppingCart", method = RequestMethod.GET)
-    public String showCart(Model model){
+    public String showCart(@ModelAttribute Product product, Model model){
         model.addAttribute("cart", shoppingCartService.getCart());
         model.addAttribute("shipment", productRepository.findShipmentMethods());
         model.addAttribute("cartTotal", shoppingCartService.getCartTotal());
@@ -58,8 +58,8 @@ public class ShoppingCartController {
     }
 
     @RequestMapping(value = "/store/shoppingCart", method = RequestMethod.POST)
-    public String showCartWithShipment(Model model, @ModelAttribute Product shipment){
-        shoppingCartService.useShipment(shipment.getId());
+    public String showCartWithShipment(@RequestParam int id,  @ModelAttribute Product product, Model model){
+        shoppingCartService.useShipment(id);
         model.addAttribute("cart", shoppingCartService.getCart());
         model.addAttribute("shipment", productRepository.findShipmentMethods());
         model.addAttribute("cartTotal", shoppingCartService.getCartTotal());
@@ -67,7 +67,7 @@ public class ShoppingCartController {
     }
 
     @RequestMapping(value = "/store/editShoppingCart", method = RequestMethod.POST)
-    public String editCart(@RequestParam int editedQuantity, Model model, @ModelAttribute Product product){
+    public String editCart(@RequestParam int editedQuantity, @ModelAttribute Product product, Model model){
         shoppingCartService.editCart(product, editedQuantity);
         model.addAttribute("cart", shoppingCartService.getCart());
         model.addAttribute("shipment", productRepository.findShipmentMethods());

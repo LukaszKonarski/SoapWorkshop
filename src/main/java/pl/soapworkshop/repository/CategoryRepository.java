@@ -10,4 +10,6 @@ public interface CategoryRepository extends JpaRepository<Category, Integer> {
     //Find all Categories, excluding Shipment Category (id = 1)
     List<Category> findAllByIdGreaterThan(Integer id);
 
+    List<Category> findAllByIdEquals(Integer id);
+
 }
