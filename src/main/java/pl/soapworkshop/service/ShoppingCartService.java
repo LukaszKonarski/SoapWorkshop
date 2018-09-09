@@ -43,7 +43,7 @@ public class ShoppingCartService {
         int currentProductIndex = findProductInCartAndReturnIndex(product, cart);
 
         if (currentProductIndex >= 0) {
-            if(isNotShipment(currentProductIndex)) {
+            if(isNotShipment(product.getId())) {
                 Product combinedProduct = combineQuantieties(currentProductIndex, product, cart);
                 updateSubTotal(combinedProduct);
                 cart.set(currentProductIndex, combinedProduct);
@@ -57,9 +57,11 @@ public class ShoppingCartService {
     public void editCart(Product editedProduct, int updatedQuantity) {
         List<Product> cart = shoppingCart.getCartContents();
         int currentProductIndex = findProductInCartAndReturnIndex(editedProduct, cart);
-        Product updatedProduct = updateQuantity(currentProductIndex, updatedQuantity, cart);
-        updateSubTotal(updatedProduct);
-        cart.set(currentProductIndex, updatedProduct);
+        if(isNotShipment(editedProduct.getId())) {
+            Product updatedProduct = updateQuantity(currentProductIndex, updatedQuantity, cart);
+            updateSubTotal(updatedProduct);
+            cart.set(currentProductIndex, updatedProduct);
+        }
     }
 
 
@@ -119,11 +121,12 @@ public class ShoppingCartService {
     }
 
     public boolean isNotShipment(int id){
-        List<Category> shipment = categoryRepository.findAllByIdEquals(1);
-        if(shipment.size()>0){
-            return false;
+        List<Product> shipmentMethods = productRepository.findShipmentMethods();
+        for (Product shipment : shipmentMethods){
+            if(shipment.getId() == id){
+                return false;
+            }
         }
-
         return true;
     }
 
