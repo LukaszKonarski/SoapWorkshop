@@ -50,21 +50,39 @@ public class ShoppingCartController {
     }
 
     @RequestMapping(value = "/store/shoppingCart", method = RequestMethod.GET)
-    public String showCart(@ModelAttribute Product product, Model model){
+    public String showCart(@ModelAttribute Shipment shipment, Model model){
+        shoppingCartService.useShipment(1);
         model.addAttribute("cart", shoppingCartService.getCart());
-        model.addAttribute("shipment", productRepository.findShipmentMethods());
+        model.addAttribute("shipments", shipmentRepository.findAll());
         model.addAttribute("cartTotal", shoppingCartService.getCartTotal());
         return "store/shoppingCart";
     }
 
     @RequestMapping(value = "/store/shoppingCart", method = RequestMethod.POST)
-    public String showCartWithShipment(@RequestParam int id,  @ModelAttribute Product product, Model model){
+    public String showCartWithShipment(@RequestParam int id,  @ModelAttribute Shipment shipment, Model model){
         shoppingCartService.useShipment(id);
         model.addAttribute("cart", shoppingCartService.getCart());
-        model.addAttribute("shipment", productRepository.findShipmentMethods());
+        model.addAttribute("shipments", shipmentRepository.findAll());
         model.addAttribute("cartTotal", shoppingCartService.getCartTotal());
         return "store/shoppingCart";
     }
+
+//    @RequestMapping(value = "/store/shoppingCart", method = RequestMethod.GET)
+//    public String showCart(@ModelAttribute Product product, Model model){
+//        model.addAttribute("cart", shoppingCartService.getCart());
+//        model.addAttribute("shipment", productRepository.findShipmentMethods());
+//        model.addAttribute("cartTotal", shoppingCartService.getCartTotal());
+//        return "store/shoppingCart";
+//    }
+//
+//    @RequestMapping(value = "/store/shoppingCart", method = RequestMethod.POST)
+//    public String showCartWithShipment(@RequestParam int id,  @ModelAttribute Product product, Model model){
+//        shoppingCartService.useShipment(id);
+//        model.addAttribute("cart", shoppingCartService.getCart());
+//        model.addAttribute("shipment", productRepository.findShipmentMethods());
+//        model.addAttribute("cartTotal", shoppingCartService.getCartTotal());
+//        return "store/shoppingCart";
+//    }
 
     @RequestMapping(value = "/store/editShoppingCart", method = RequestMethod.POST)
     public String editCart(@RequestParam int editedQuantity, @ModelAttribute Product product, Model model){

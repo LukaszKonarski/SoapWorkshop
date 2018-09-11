@@ -62,9 +62,9 @@
                 <th><label for="shipment">Wybierz formę przesyłki:</label></th>
                 <th>
                     <%--@elvariable id="product" type=""--%>
-                    <form:form method="post" action="/store/shoppingCart" modelAttribute="product">
+                    <form:form method="post" action="/store/shoppingCart" modelAttribute="shipment">
                         <form:select path="id">
-                            <c:forEach items="${shipment}" var="shipmentMethod">
+                            <c:forEach items="${shipments}" var="shipmentMethod">
                                 <form:option value="${shipmentMethod.id}" label="${shipmentMethod.name}"></form:option>
                             </c:forEach>
                         </form:select>

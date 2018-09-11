@@ -43,11 +43,9 @@ public class ShoppingCartService {
         int currentProductIndex = findProductInCartAndReturnIndex(product, cart);
 
         if (currentProductIndex >= 0) {
-            if(isNotShipment(product.getId())) {
-                Product combinedProduct = combineQuantieties(currentProductIndex, product, cart);
-                updateSubTotal(combinedProduct);
-                cart.set(currentProductIndex, combinedProduct);
-            }
+            Product combinedProduct = combineQuantieties(currentProductIndex, product, cart);
+            updateSubTotal(combinedProduct);
+            cart.set(currentProductIndex, combinedProduct);
         } else if (currentProductIndex < 0) {
             updateSubTotal(product);
             cart.add(product);
@@ -57,11 +55,10 @@ public class ShoppingCartService {
     public void editCart(Product editedProduct, int updatedQuantity) {
         List<Product> cart = shoppingCart.getCartContents();
         int currentProductIndex = findProductInCartAndReturnIndex(editedProduct, cart);
-        if(isNotShipment(editedProduct.getId())) {
-            Product updatedProduct = updateQuantity(currentProductIndex, updatedQuantity, cart);
-            updateSubTotal(updatedProduct);
-            cart.set(currentProductIndex, updatedProduct);
-        }
+        Product updatedProduct = updateQuantity(currentProductIndex, updatedQuantity, cart);
+        updateSubTotal(updatedProduct);
+        cart.set(currentProductIndex, updatedProduct);
+
     }
 
 
@@ -105,8 +102,8 @@ public class ShoppingCartService {
     }
 
     public void useShipment(int chosenShipmentId) {
-        Product usedShipment = productRepository.findOne(chosenShipmentId);
-        addToCart(usedShipment);
+        Shipment usedShipment = shipmentRepository.findOne(chosenShipmentId);
+        shoppingCart.setShipment(usedShipment);
     }
 
     public int findProductInCartAndReturnIndex(Product product, List<Product> cart) {
@@ -120,15 +117,15 @@ public class ShoppingCartService {
         return -1;
     }
 
-    public boolean isNotShipment(int id){
-        List<Product> shipmentMethods = productRepository.findShipmentMethods();
-        for (Product shipment : shipmentMethods){
-            if(shipment.getId() == id){
-                return false;
-            }
-        }
-        return true;
-    }
+//    public boolean isNotShipment(int id){
+//        List<Product> shipmentMethods = productRepository.findShipmentMethods();
+//        for (Product shipment : shipmentMethods){
+//            if(shipment.getId() == id){
+//                return false;
+//            }
+//        }
+//        return true;
+//    }
 
     public Product combineQuantieties(int currentProductIndex, Product addedProduct, List<Product> cart) {
         Product currentProduct = cart.get(currentProductIndex);
@@ -156,6 +153,8 @@ public class ShoppingCartService {
             Product currentProduct = (Product) literator.next();
             cartTotal = cartTotal.add(currentProduct.getSubtotal());
         }
+        BigDecimal shipmentCost = (shoppingCart.getShipment()).getCost();
+        cartTotal.add(shipmentCost);
         return cartTotal;
     }
 
