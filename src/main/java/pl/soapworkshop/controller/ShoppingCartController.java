@@ -88,7 +88,7 @@ public class ShoppingCartController {
     public String editCart(@RequestParam int editedQuantity, @ModelAttribute Product product, Model model){
         shoppingCartService.editCart(product, editedQuantity);
         model.addAttribute("cart", shoppingCartService.getCart());
-        model.addAttribute("shipment", productRepository.findShipmentMethods());
+        model.addAttribute("shipments", shipmentRepository.findAll());
         model.addAttribute("cartTotal", shoppingCartService.getCartTotal());
         return "store/shoppingCart";
     }
@@ -97,14 +97,14 @@ public class ShoppingCartController {
     public String deleteProductFromCart(@PathVariable Integer id, Model model){
         shoppingCartService.deleteProductFromCart(id);
         model.addAttribute("cart", shoppingCartService.getCart());
-        model.addAttribute("shipment", shipmentRepository.findAll());
+        model.addAttribute("shipments", shipmentRepository.findAll());
         model.addAttribute("cartTotal", shoppingCartService.getCartTotal());
         return "store/shoppingCart";
     }
 
     @RequestMapping(value = "/store/orderCheckout", method = RequestMethod.POST)
     public String orderCheckout(Model model, @ModelAttribute Address address){
-        shoppingCartService.orderCheckout(shoppingCartService.getCart());
+        shoppingCartService.orderCheckout(shoppingCartService.getCart(), shoppingCart.getShipment());
         Integer orderId = shoppingCartService.getLastOrderId();
         model.addAttribute("orderId", orderId);
         shoppingCartService.addOrderAddress(address, orderId );

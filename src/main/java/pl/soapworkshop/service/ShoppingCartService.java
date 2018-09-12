@@ -76,7 +76,7 @@ public class ShoppingCartService {
 
     }
 
-    public void orderCheckout(List<Product> orderedProducts) {
+    public void orderCheckout(List<Product> orderedProducts, Shipment usedShipment) {
         Order lastOrder = orderRepository.findFirstByOrderByOrderIdDesc();
         Integer orderId = 1 + lastOrder.getOrderId();
         for (Product op : orderedProducts) {
@@ -86,6 +86,7 @@ public class ShoppingCartService {
             currentOrder.setProductName(op.getName());
             currentOrder.setProductQuantity(op.getQuantity());
             currentOrder.setOrderTotal(getCartTotal());
+            currentOrder.setChosenShipmentId(usedShipment.getId());
             orderRepository.save(currentOrder);
         }
     }
@@ -98,7 +99,6 @@ public class ShoppingCartService {
     public void addOrderAddress(Address address, Integer orderId) {
         address.setOrderId(orderId);
         addressRepository.save(address);
-
     }
 
     public void useShipment(int chosenShipmentId) {
@@ -116,16 +116,6 @@ public class ShoppingCartService {
         }
         return -1;
     }
-
-//    public boolean isNotShipment(int id){
-//        List<Product> shipmentMethods = productRepository.findShipmentMethods();
-//        for (Product shipment : shipmentMethods){
-//            if(shipment.getId() == id){
-//                return false;
-//            }
-//        }
-//        return true;
-//    }
 
     public Product combineQuantieties(int currentProductIndex, Product addedProduct, List<Product> cart) {
         Product currentProduct = cart.get(currentProductIndex);
@@ -154,7 +144,7 @@ public class ShoppingCartService {
             cartTotal = cartTotal.add(currentProduct.getSubtotal());
         }
         BigDecimal shipmentCost = (shoppingCart.getShipment()).getCost();
-        cartTotal.add(shipmentCost);
+        cartTotal = cartTotal.add(shipmentCost);
         return cartTotal;
     }
 
