@@ -95,7 +95,7 @@ public class AppConfig extends WebMvcConfigurerAdapter {
         mailSender.setPort(587);
 
         mailSender.setUsername("zamowienia.soapworkshop@gmail.com");
-        mailSender.setPassword("@SoapCode208");
+        mailSender.setPassword("hhojdjjejbuawbvs");
 
         Properties props = mailSender.getJavaMailProperties();
         props.put("mail.transport.protocol", "smtp");

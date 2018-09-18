@@ -21,10 +21,12 @@ public class ShoppingCartService {
     private AddressRepository addressRepository;
     private ProductRepository productRepository;
     private CategoryRepository categoryRepository;
+    private EmailServiceImpl emailService;
 
     @Autowired
     public ShoppingCartService(ShoppingCart shoppingCart, OrderRepository orderRepository, ShipmentRepository shipmentRepository,
-                               AddressRepository addressRepository, ProductRepository productRepository, CategoryRepository categoryRepository) {
+                               AddressRepository addressRepository, ProductRepository productRepository,
+                               CategoryRepository categoryRepository, EmailServiceImpl emailService) {
         this.shoppingCart = shoppingCart;
         this.orderRepository = orderRepository;
         this.shipmentRepository = shipmentRepository;
@@ -88,6 +90,7 @@ public class ShoppingCartService {
             currentOrder.setOrderTotal(getCartTotal());
             currentOrder.setChosenShipmentId(usedShipment.getId());
             orderRepository.save(currentOrder);
+            emailService.sendSimpleMessage("konarskiwiththek@gmail.com", "order", "This is your OC");
         }
     }
 
