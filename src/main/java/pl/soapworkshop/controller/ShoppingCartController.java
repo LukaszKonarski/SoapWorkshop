@@ -88,7 +88,7 @@ public class ShoppingCartController {
 
     @RequestMapping(value = "/store/orderCheckout", method = RequestMethod.POST)
     public String orderCheckout(Model model, @ModelAttribute Address address){
-        shoppingCartService.orderCheckout(shoppingCartService.getCart(), shoppingCart.getShipment());
+        shoppingCartService.orderCheckout(shoppingCartService.getCart(), shoppingCart.getShipment(), address);
         Integer orderId = shoppingCartService.getLastOrderId();
         model.addAttribute("orderId", orderId);
         shoppingCartService.addOrderAddress(address, orderId );

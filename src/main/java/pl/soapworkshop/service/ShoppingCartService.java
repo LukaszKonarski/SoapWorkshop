@@ -33,6 +33,7 @@ public class ShoppingCartService {
         this.addressRepository = addressRepository;
         this.productRepository = productRepository;
         this.categoryRepository = categoryRepository;
+        this.emailService = emailService;
     }
 
     public List<Product> getCart() {
@@ -78,7 +79,7 @@ public class ShoppingCartService {
 
     }
 
-    public void orderCheckout(List<Product> orderedProducts, Shipment usedShipment) {
+    public void orderCheckout(List<Product> orderedProducts, Shipment usedShipment, Address address) {
         Order lastOrder = orderRepository.findFirstByOrderByOrderIdDesc();
         Integer orderId = 1 + lastOrder.getOrderId();
         for (Product op : orderedProducts) {
@@ -90,7 +91,11 @@ public class ShoppingCartService {
             currentOrder.setOrderTotal(getCartTotal());
             currentOrder.setChosenShipmentId(usedShipment.getId());
             orderRepository.save(currentOrder);
-            emailService.sendSimpleMessage("konarskiwiththek@gmail.com", "order", "This is your OC");
+        }
+        String message = "Hello!" + System.lineSeparator() +"This is our confirmation for your order no.: " + orderId +
+                        System.lineSeparator() + "Monika - SoapWorkshop";
+        if((address.getEmail()) != null){
+            emailService.sendSimpleMessage(address.getEmail(), "Order " + orderId, message);
         }
     }
 
@@ -150,7 +155,6 @@ public class ShoppingCartService {
         cartTotal = cartTotal.add(shipmentCost);
         return cartTotal;
     }
-
 
 
 }
