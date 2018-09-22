@@ -94,7 +94,7 @@ public class ShoppingCartService {
         }
         String message = "Hello!" + System.lineSeparator() +"This is our confirmation for your order no.: " + orderId +
                         System.lineSeparator() + "Monika - SoapWorkshop";
-        if((address.getEmail()) != null){
+        if(address.getEmail().length() > 0){
             emailService.sendSimpleMessage(address.getEmail(), "Order " + orderId, message);
         }
     }
