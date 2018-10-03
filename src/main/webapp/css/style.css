@@ -1,9 +1,22 @@
 
-header.index {
+body, html {
+    height: 100%;
+}
 
-    
+.bg{
+
+
     background-image: url("../img/indexpic.jpg");
-    background-position: center center;
-    background-size: cover;
+    background-color: lightgrey;
 
+    height: 70%;
+    background-position: center;
+    background-size: cover ;
+    background-repeat: no-repeat;
+}
+
+.navbar-default{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

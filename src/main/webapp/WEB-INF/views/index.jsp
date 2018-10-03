@@ -20,11 +20,12 @@
 </head>
 <body>
 
-<div class="container-fluid">
-    <h1>SOAP WORKSHOP</h1>
+<div class="bg">
+
     <%--<a href="<c:url value="/login"/>" class="btn btn-default" role="button">Loguj się</a>--%>
 
     <nav class="navbar navbar-default">
+        <h1>SOAP WORKSHOP</h1>
         <div class="container-fluid">
             <ul class="nav navbar-nav">
                 <li class="active"><a href="/">HOME</a></li>
@@ -42,10 +43,9 @@
         </div>
     </nav>
 
-    <header class="index">
 
-    </header>
 
+</div>
 
 </body>
 </html>
