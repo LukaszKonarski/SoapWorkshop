@@ -23,9 +23,10 @@
 <div class="bg">
 
     <%--<a href="<c:url value="/login"/>" class="btn btn-default" role="button">Loguj się</a>--%>
-
-    <nav class="navbar navbar-default">
+    <div class="navbar-default">
         <h1>SOAP WORKSHOP</h1>
+    </div>
+        <nav class="navbar navbar-default">
         <div class="container-fluid">
             <ul class="nav navbar-nav">
                 <li class="active"><a href="/">HOME</a></li>
@@ -43,6 +44,9 @@
         </div>
     </nav>
 
+    <div>
+        <img src="../img/indexpic.jpg" class="mainPic container-fluid">
+    </div>
 
 
 </div>
