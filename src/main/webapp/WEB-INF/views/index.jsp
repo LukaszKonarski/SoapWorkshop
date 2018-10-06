@@ -45,7 +45,7 @@
     </nav>
 
     <div>
-        <img src="../img/indexpic.jpg" class="mainPic container-fluid">
+        <img src="../img/indexpic.jpg" class="mainPic container-fluid px-0">
     </div>
 
 
