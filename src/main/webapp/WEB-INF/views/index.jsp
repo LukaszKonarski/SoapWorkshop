@@ -23,10 +23,11 @@
 <div class="bg">
 
     <%--<a href="<c:url value="/login"/>" class="btn btn-default" role="button">Loguj się</a>--%>
-    <div class="navbar-default">
+    <div class="navbar-light">
         <h1>SOAP WORKSHOP</h1>
     </div>
-        <nav class="navbar navbar-default">
+
+        <nav class="navbar navbar-light">
         <div class="container-fluid">
             <ul class="nav navbar-nav">
                 <li class="active"><a href="/">HOME</a></li>
@@ -42,7 +43,7 @@
                 <li class="active"><a href="<c:url value="/store/shoppingCart"/>">KOSZYK</a></li>
             </ul>
         </div>
-    </nav>
+        </nav>
 
     <div>
         <img src="../img/indexpic.jpg" class="mainPic container-fluid px-0">

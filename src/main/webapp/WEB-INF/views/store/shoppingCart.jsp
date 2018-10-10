@@ -22,7 +22,7 @@
 <div class="container-fluid">
     <h1>SOAP WORKSHOP</h1>
 
-    <nav class="navbar navbar-default">
+    <nav class="navbar navbar-light">
         <div class="container-fluid">
             <ul class="nav navbar-nav">
                 <li class="active"><a href="/">HOME</a></li>

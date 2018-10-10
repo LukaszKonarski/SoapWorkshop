@@ -3,11 +3,20 @@ body, html {
     height: 100%;
 }
 
+body {
+    font-family: 'Open Sans','Helvetica Neue', Helvetica, Arial, Tahoma, sans-serif;
+    background-color: #fff;
+}
+
+h1,h2,h3,h4,h5,h6{
+    font-family: 'Open Sans','Helvetica Neue', Helvetica, Arial, Tahoma, sans-serif;
+}
+
 .bg{
 
 
     /*background-image: url("../img/indexpic.jpg");*/
-    background-color: lightgrey;
+    background-color: white;
 
     height: 100%;
     background-position: center;
@@ -15,13 +24,41 @@ body, html {
     background-repeat: no-repeat;
 }
 
-.navbar-default{
+.navbar-light{
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: white;
+
+}
+
+.navbar-light .navbar-nav > li > a {
+    color: #777;
+}
+.navbar-light .navbar-nav > li > a:hover,
+.navbar-light .navbar-nav > li > a:focus {
+    color: #333;
+}
+.navbar-light .navbar-nav > .active > a,
+.navbar-light .navbar-nav > .active > a:hover,
+.navbar-light .navbar-nav > .active > a:focus {
+    color: #555;
+    background-color: #E7E7E7;
+}
+.navbar-light .navbar-nav > .open > a,
+.navbar-light .navbar-nav > .open > a:hover,
+.navbar-light .navbar-nav > .open > a:focus {
+    color: #555;
+    background-color: #D5D5D5;
+}
+
+.navbar-light .navbar-toggle .icon-bar {
+    background-color: #CCC;
 }
 
 .mainPic {
     width: 100%;
     position: center;
+    padding-left: 0;
+    padding-right: 0;
 }
