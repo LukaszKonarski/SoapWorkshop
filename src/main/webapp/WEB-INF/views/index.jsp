@@ -13,6 +13,7 @@
     <title>Soap Workshop</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -22,12 +23,13 @@
 
 <div class="bg">
 
-    <%--<a href="<c:url value="/login"/>" class="btn btn-default" role="button">Loguj się</a>--%>
+
     <div class="navbar-light bg-white">
-        <div class="title">SOAP WORKSHOP</div>
+
+        <div class="title text-center col-md-4 col-md-offset-4">SOAP WORKSHOP</div>
     </div>
 
-        <nav class="navbar navbar-light bg-white">
+        <nav class="navbar navbar-light bg-white nav-bar-top-border nav-bar-bottom-border">
         <div class="container-fluid">
             <ul class="nav navbar-nav">
                 <li class="active"><a href="/">HOME</a></li>

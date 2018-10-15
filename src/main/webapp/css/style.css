@@ -10,7 +10,9 @@ body {
 
 .title {
     font-family: 'Open Sans','Helvetica Neue', Helvetica, Arial, Tahoma, sans-serif;
-    size: 24pt;
+    font-size: 30px;
+    padding-top: 35px;
+    padding-bottom: 35px;
 }
 
 h1,h2,h3,h4,h5,h6{
@@ -38,7 +40,7 @@ h1,h2,h3,h4,h5,h6{
 }
 
 .navbar-light .navbar-nav > li > a {
-    color: #777;
+    color: #5a5b5f;
 }
 .navbar-light .navbar-nav > li > a:hover,
 .navbar-light .navbar-nav > li > a:focus {
@@ -52,12 +54,6 @@ h1,h2,h3,h4,h5,h6{
     color: #555;
     background-color: #E7E7E7;
 }
-/*.navbar-light .navbar-nav > .open > a,*/
-/*.navbar-light .navbar-nav > .open > a:hover,*/
-/*.navbar-light .navbar-nav > .open > a:focus {*/
-    /*color: #555;*/
-    /*background-color: #E7E7E7;*/
-/*}*/
 
 .navbar-light .navbar-nav > .dropdown > a .caret {
     border-top-color: #777;
@@ -77,6 +73,13 @@ h1,h2,h3,h4,h5,h6{
 
 .navbar-light .navbar-toggle .icon-bar {
     background-color: #CCC;
+}
+
+.nav-bar-top-border{
+    border-top: 1px dotted #e5e5e5;
+}
+.nav-bar-bottom-border {
+    border-bottom: 1px dotted #e5e5e5;
 }
 
 .mainPic {
