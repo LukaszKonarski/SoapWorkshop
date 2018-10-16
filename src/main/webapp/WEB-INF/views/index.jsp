@@ -13,7 +13,8 @@
     <title>Soap Workshop</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=latin,latin-ext'
+          rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -23,17 +24,25 @@
 
 <div class="bg">
 
-
-    <div class="navbar-light bg-white">
-
-        <div class="title text-center col-md-4 col-md-offset-4">SOAP WORKSHOP</div>
+    <div class="container-fluid">
+        <a href="<c:url value="/store/shoppingCart"/>" class="btn btn-default btn-sm" role="button">
+            <span class="glyphicon glyphicon-shopping-cart"></span> Koszyk
+        </a>
     </div>
 
-        <nav class="navbar navbar-light bg-white nav-bar-top-border nav-bar-bottom-border">
+
+    <div class="container container-table">
+        <div class="row vertical-center-row">
+            <div class="title text-center col-md-4 col-md-offset-4" href="/">SOAP WORKSHOP</div>
+        </div>
+    </div>
+
+    <nav class="navbar navbar-light bg-white nav-bar-top-border nav-bar-bottom-border">
         <div class="container-fluid">
             <ul class="nav navbar-nav">
                 <li class="active"><a href="/">HOME</a></li>
-                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">SKLEP<span class="caret"></span></a>
+                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">SKLEP<span
+                        class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <c:forEach items="${categories}" var="c">
                             <li><a href="<c:url value="/store/productsList/${c.id}"/>">${c.name}</a></li>
@@ -45,7 +54,7 @@
                 <li class="active"><a href="<c:url value="/store/shoppingCart"/>">KOSZYK</a></li>
             </ul>
         </div>
-        </nav>
+    </nav>
 
     <div>
         <img src="../img/indexpic.jpg" class="mainPic container-fluid px-0">
