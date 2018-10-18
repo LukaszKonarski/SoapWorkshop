@@ -13,8 +13,7 @@
     <title>Soap Workshop</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=latin,latin-ext'
-          rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -24,10 +23,13 @@
 
 <div class="bg">
 
-    <div class="container-fluid">
-        <a href="<c:url value="/store/shoppingCart"/>" class="btn btn-default btn-sm" role="button">
-            <span class="glyphicon glyphicon-shopping-cart"></span> Koszyk
-        </a>
+    <div class="container-fluid row">
+        <div class="col-sm-10 col-md-11"></div>
+        <div class="col-sm-2 col-md-1">
+            <a href="<c:url value="/store/shoppingCart"/>" class="btn btn-default btn-sm" role="button">
+                <span class="glyphicon glyphicon-shopping-cart"></span> KOSZYK
+            </a>
+        </div>
     </div>
 
 
@@ -51,7 +53,6 @@
                 </li>
                 <li class="active"><a href="#">O NAS</a></li>
                 <li class="active"><a href="#">KONTAKT</a></li>
-                <li class="active"><a href="<c:url value="/store/shoppingCart"/>">KOSZYK</a></li>
             </ul>
         </div>
     </nav>
