@@ -35,9 +35,10 @@ h1,h2,h3,h4,h5,h6{
 
 
 }
-
+/*navbar font*/
 .navbar-light .navbar-nav > li > a {
     color: #5a5b5f;
+    background-color: #E7E7E7;
 }
 .navbar-light .navbar-nav > li > a:hover,
 .navbar-light .navbar-nav > li > a:focus {
@@ -55,21 +56,25 @@ h1,h2,h3,h4,h5,h6{
 .navbar-light .navbar-nav > .dropdown > a .caret {
     border-top-color: #777;
     border-bottom-color: #777;
+    background-color: #E7E7E7;
 }
 .navbar-light .navbar-nav > .dropdown > a:hover .caret,
 .navbar-light .navbar-nav > .dropdown > a:focus .caret {
     border-top-color: #333;
     border-bottom-color: #333;
+    background-color: #E7E7E7;
 }
 .navbar-light .navbar-nav > .open > a .caret,
 .navbar-light .navbar-nav > .open > a:hover .caret,
 .navbar-light .navbar-nav > .open > a:focus .caret {
     border-top-color: #555;
     border-bottom-color: #555;
+    background-color: #E7E7E7;
 }
 
+
 .navbar-light .navbar-toggle .icon-bar {
-    background-color: #CCC;
+    background-color: #E7E7E7;
 }
 
 .nav-bar-top-border{
