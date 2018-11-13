@@ -32,6 +32,7 @@ h1,h2,h3,h4,h5,h6{
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: white;
 
 
 }
@@ -43,6 +44,10 @@ h1,h2,h3,h4,h5,h6{
 .navbar-light .navbar-nav > li > a:hover,
 .navbar-light .navbar-nav > li > a:focus {
     color: #333;
+}
+.navbar-light .navbar-nav > li > .dropdown-menu {
+    background-color: #E7E7E7;
+    border-color: #E7E7E7;
 }
 .navbar-light .navbar-nav > .active > a{
     background-color: white;
